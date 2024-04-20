@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Личный кабинет{% endblock %}
+{% block content %}
+    <h1>Ваш личный кабинет исполнителя</h1>
+    <hr>
+    <h2>Редактирование информации о себе</h2>
+    <form method="post" action="{% url 'executor:profile' %}">
+        {% csrf_token %}
+        <div class="w-25">
+            <div>
+                <label class="form-label" for="firstName">Имя (обязательное поле):</label>
+                {{ form.first_name }}
+            </div>
+            <div>
+                <label class="form-label" for="lastName">Фамилия (обязательное поле):</label>
+                {{ form.last_name }}
+            </div>
+            <div>
+                <label class="form-label" for="typePhone">Номер телефона (не обязательное поле):</label>
+                {{ form.phone }}
+            </div>
+            <div>
+                <label class="form-label" for="email">Email (не обязательное поле):</label>
+                {{ form.email }}
+            </div>
+            <div>
+                <label class="form-label" for="experience">Опыт (в годах):</label>
+                {{ form.experience }}
+            </div>
+            <br>
+            <input type="submit" class="btn btn-primary" value="Сохранить">
+        </div>
+    </form>
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}Хочу в анверали{% endblock %}
+        </title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    </head>
+    <body>
+        <!-- Панель навигации -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'index:index' %}">Тестовое</a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'customer:profile' %}">Заказчику</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'executor:profile' %}">Исполнителю</a>
+                        </li>
+                        {% if user.is_superuser %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'admin:index' %}">Админ-панель</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Контент страницы -->
+        {% block content %}{% endblock %}
+    </body>
+</html>
